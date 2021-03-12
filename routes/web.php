@@ -15,7 +15,7 @@ use App\Http\Controllers\CharacterController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('create');
 });
 
 Route::resource('characters', CharacterController::class);
