@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Character;
 use Illuminate\Http\Request;
+
 
 class CharacterController extends Controller
 {
@@ -13,7 +15,8 @@ class CharacterController extends Controller
      */
     public function index()
     {
-        //
+        $character = Character::all();
+        return view('index', compact('characters'));
     }
 
     /**
@@ -23,7 +26,7 @@ class CharacterController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -34,7 +37,15 @@ class CharacterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $storeData = $request->validate([
+            'name' => 'required|max:255',
+            'creation_year' => 'required|numeric',
+            'affiliate_comic' => 'required|max:255',
+            'cartoonist' => 'required|max:255',
+        ]);
+        $character = Character::create($storeData);
+
+        return redirect('/characters')->with('completed', 'Character has been saved!');
     }
 
     /**
@@ -56,7 +67,8 @@ class CharacterController extends Controller
      */
     public function edit($id)
     {
-        //
+        $character = Character::findOrFail($id);
+        return view('edit', compact(''));
     }
 
     /**
@@ -68,7 +80,14 @@ class CharacterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $updateData = $request->validate([
+            'name' => 'required|max:255',
+            'creation_year' => 'required|numeric',
+            'affiliate_comic' => 'required|max:255',
+            'cartoonist' => 'required|max:255',
+        ]);
+        Character::whereId($id)->update($updateData);
+        return redirect('/characters')->with('completed', 'Character has been updated');
     }
 
     /**
@@ -79,6 +98,9 @@ class CharacterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $character = Character::findOrFail($id);
+        $character->delete();
+
+        return redirect('/characters')->with('completed', 'Character has been deleted');
     }
 }
