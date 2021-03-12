@@ -34,11 +34,11 @@
           </div>
           <div class="form-group">
               <label for="creation_year">Année de création</label>
-              <input type="number" class="form-control" name="year"/>
+              <input type="number" class="form-control" name="creation_year"/>
           </div>
           <div class="form-group">
               <label for="affiliate_comic">Apparait dans</label>
-              <input type="text" class="form-control" name="comic"/>
+              <input type="text" class="form-control" name="affiliate_comic"/>
           </div>
           <div class="form-group">
               <label for="cartoonist">Dessinateur</label>

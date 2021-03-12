@@ -68,7 +68,7 @@ class CharacterController extends Controller
     public function edit($id)
     {
         $character = Character::findOrFail($id);
-        return view('edit', compact(''));
+        return view('edit', compact('character'));
     }
 
     /**
